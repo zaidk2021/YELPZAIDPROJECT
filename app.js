@@ -13,6 +13,14 @@ const passport=require("passport");
 const LocalStrategy=require('passport-local');
 const campgroundRoutes=require('./routes/campgrounds');
 const xss = require('xss');
+function sanitize(req, res, next) {
+    for (let key in req.body) {
+      if (typeof req.body[key] === 'string') {
+        req.body[key] = xss(req.body[key]);
+      }
+    }
+    next();
+  }
 const userRoutes=require('./routes/users');
 const reviewRoutes=require('./routes/reviews');
 const MongoStore = require('connect-mongo');
@@ -41,7 +49,7 @@ app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'));
-app.use(xss);//use to sanitize html
+app.use(sanitize);//use to sanitize html
 
 app.use(express.static(path.join(__dirname,'public')))
 const secret=process.env.SECRET || 'thisshouldbeabettersecret!';
