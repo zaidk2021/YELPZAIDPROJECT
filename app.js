@@ -12,6 +12,7 @@ const methodOverride=require('method-override');
 const passport=require("passport");
 const LocalStrategy=require('passport-local');
 const campgroundRoutes=require('./routes/campgrounds');
+const xss = require('xss');
 const userRoutes=require('./routes/users');
 const reviewRoutes=require('./routes/reviews');
 const MongoStore = require('connect-mongo');
@@ -26,7 +27,6 @@ const dbUrl=process.env.DB_URL||'mongodb://127.0.0.1:27017/yelp-camp';
  // useUnifiedTopology: true,
 //});//127.0.0.1:27017//dont why localhost is not working
 mongoose.connect(dbUrl);
-const mongoSanitize=require('express-mongo-sanitize');
 //when loading the website first run mongod
 //then run node -i -e "$(< C:/Users/zaidk/OneDrive/Desktop/yelp/seeds/index.js)"
 //then run nodemon app.js then run webiste
@@ -41,9 +41,9 @@ app.set('view engine','ejs');
 app.set('views',path.join(__dirname,'views'));
 app.use(express.urlencoded({extended:true}))
 app.use(methodOverride('_method'));
+app.use(xss());//use to sanitize html
 
 app.use(express.static(path.join(__dirname,'public')))
-app.use(mongoSanitize());
 const secret=process.env.SECRET || 'thisshouldbeabettersecret!';
 const store = MongoStore.create({
     mongoUrl: dbUrl,
