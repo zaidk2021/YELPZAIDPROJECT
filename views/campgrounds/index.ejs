@@ -4,14 +4,14 @@
    <div class="container"> 
 <h1> All Campgrounds</h1>
         <% for(let campground of campgrounds) { %>
-            <div class="card mb-3">
+            <div class="card mb-3" style="max-height: 300px; overflow: hidden;">
                 <div class="row">
                     <div class="col-md-4">
                         <%if(campground.images.length) { %>
                         <img crossorigin="anonymous" class="img-fluid" alt="" src="<%= campground.images[0].url %>">
                         <%}else { %>
                         <img class="img-fluid" alt="" src="https://res.cloudinary.com/djfjsks1a/image/upload/v1683957299/YelpCamp/ulewiipfk4bfehknw3pg.jpg">
-                    <%} %>
+                         <%} %>
                     </div>
                     <div class="col-md-8">
                     <div class="card-body">
