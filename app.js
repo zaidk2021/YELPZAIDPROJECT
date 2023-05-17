@@ -7,11 +7,11 @@ const mongoose=require('mongoose');
 const ejsMate=require('ejs-mate');
 const session=require('express-session');
 const flash=require('connect-flash');
-const ExpressError=require('./utils/ExpressError');
+const ExpressError=require('./utils/ExpressError.js');
 const methodOverride=require('method-override');
 const passport=require("passport");
 const LocalStrategy=require('passport-local');
-const campgroundRoutes=require('./routes/campgrounds');
+const campgroundRoutes=require('./routes/campgrounds.js');
 const xss = require('xss');
 function sanitize(req, res, next) {
     for (let key in req.body) {
@@ -25,7 +25,7 @@ const userRoutes=require('./routes/users');
 const reviewRoutes=require('./routes/reviews');
 const MongoStore = require('connect-mongo');
 //'mongodb://localhost:27017/yelp-camp';
-const User = require('./models/user');
+const User = require('./models/user.js');
 const helmet=require('helmet');
 mongoose.set('strictQuery', false);
 //const dbUrl = process.env.DB_URL;

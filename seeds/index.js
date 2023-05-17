@@ -1,5 +1,5 @@
 
-const cities = require('./seeds/cities');
+const cities = require('./seeds/cities.js');
 const mongoose = require('mongoose');
 const { places, descriptors } = require('./seeds/seedhelpers.js');
 const Campground = require('C:/Users/zaidk/OneDrive/Desktop/yelp/models/campground.js');
