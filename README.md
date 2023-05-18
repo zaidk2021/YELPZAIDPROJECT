@@ -1,5 +1,5 @@
 Hello and Welcome to YelpCamp!
-YelpCamp is a final project as part of a websites building course.
+YelpCamp is my final project and is a clone of the official yelp website.
 
 YelpCamp is used as a platform for searching and finding camping sites. The user will be able to search and find hundreds of different camping sites, and also will be able to filter them by price, so he can find camping sites that suit him financially.
 
@@ -16,7 +16,7 @@ Bootstrap
 Server Side:
 Node.js
 Express.js
-MongoDB
+MongoDB(Atlas)
 External Tools:
 Cloudinary - A solution for developers and marketers to manage images, videos and other rich media assets.
 Mapbox - Maps and location for developers.
