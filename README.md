@@ -21,7 +21,7 @@ External Tools:
 Cloudinary - A solution for developers and marketers to manage images, videos and other rich media assets.
 Mapbox - Maps and location for developers.
 Starability.css - Accessible rating with animations on top.
-https://campgroundzk1.onrender.com/ go to this link to visit my website
+https://campgroundzk1.onrender.com/ go to this link to visit my website.The initial loading time may take a few minutes as i am using a free tool to host the site.
 
 
 
