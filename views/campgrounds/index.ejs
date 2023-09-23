@@ -1,40 +1,79 @@
 <% layout('layouts/boilerplate') %>
-<div id="cluster-map" ></div>
-<!-- located in public stylesheer app.css-->
-   <div class="container"> 
-<h1> All Campgrounds</h1>
-        <% for(let campground of campgrounds) { %>
-            <div class="card mb-3" style="max-height: 300px; overflow: hidden;">
-                <div class="row">
-                    <div class="col-md-4">
-                        <%if(campground.images.length) { %>
+<div id="cluster-map"></div>
+
+<!-- located in public stylesheet app.css-->
+<style>
+    /* Custom styles for responsiveness */
+    .custom-card {
+        overflow: hidden;
+    }
+
+    .custom-card img {
+        max-height: 100%;
+        width: auto;      
+        max-width: 100%;
+    }
+
+    .custom-card-title {
+        font-size: 1.5vw; 
+    }
+
+    .custom-card-text {
+        font-size: 1.2vw; 
+    }
+
+    @media (max-width: 768px) {
+        .custom-card img {
+            width: 100%;
+            height: auto;
+            max-height: 25vh;  /* restrict height of image */
+        }
+        .btn-responsive {
+            margin-top: 10px;
+            width: 100%;
+        }
+        .col-md-4, .col-md-8 {
+            flex-basis: 100%; /* make them take full width */
+            max-width: 100%; /* make them take full width */
+        }
+    }
+</style>
+
+<div class="container">
+    <h1>All Campgrounds</h1>
+    <% for(let campground of campgrounds) { %>
+        <div class="card custom-card mb-3">
+            <div class="row no-gutters">
+                <div class="col-md-4 d-flex align-items-center justify-content-center">
+                    <%if(campground.images.length) { %>
                         <img crossorigin="anonymous" class="img-fluid" alt="" src="<%= campground.images[0].url %>">
-                        <%}else { %>
+                    <% } else { %>
                         <img class="img-fluid" alt="" src="https://res.cloudinary.com/djfjsks1a/image/upload/v1683957299/YelpCamp/ulewiipfk4bfehknw3pg.jpg">
-                         <%} %>
-                    </div>
-                    <div class="col-md-8">
+                    <% } %>
+                </div>
+                <div class="col-md-8">
                     <div class="card-body">
-                            <h5 class="card-title"><%= campground.title %></h5>
-        
-                            <p class="card-text"><%= campground.description %></p>                   
-                            <p class="card-text">
-                                <small class="text-muted"><%= campground.location%></small>
-                            </p> 
-                            <a class="btn btn-primary" href="/campgrounds/<%= campground._id %>">View <%=campground.title%></a>                   
+                        <h5 class="card-title custom-card-title"><%= campground.title %></h5>
+                        <p class="card-text custom-card-text"><%= campground.description %></p>
+                        <p class="card-text">
+                            <small class="text-muted custom-card-text"><%= campground.location%></small>
+                        </p>
+                        <a class="btn btn-primary btn-responsive" href="/campgrounds/<%= campground._id %>">View <%= campground.title %></a>
                     </div>
-                    </div>  
                 </div>
             </div>
-        <% } %>
         </div>
-        <script>
-            const mapToken = "<%- process.env.MAPBOX_TOKEN %>";
-            //in double qoutes as being passed as string variable
-            const campgrounds = {features:<%-JSON.stringify(campgrounds) %>};
-            //not in double qoutes as being passed as object
-          //give features to make features an array of campg objects so that it matches the clustermap data structure to work
-         //here considering all campgrounds in show 
-         //in show only single campground
-         </script>
+    <% } %>
+</div>
+
+<script>
+    //in double qoutes as being passed as string variable
+    const mapToken = "<%- process.env.MAPBOX_TOKEN %>";
+    // not in double qoutes as being passed as object
+
+// give features to make features an array of campg objectsso that it matches the clustermap data structure to work
+// here considering all campgrounds in show
+// in show only single campground
+    const campgrounds = {features:<%-JSON.stringify(campgrounds) %>};
+</script>
 <script src="/javascripts/clusterMap.js"></script>
